@@ -1,0 +1,13 @@
+SELECT a.* FROM products AS a
+  LEFT JOIN products AS a2 
+    ON a.category_id = a2.category_id AND a.price <= a2.price
+GROUP BY a.product_id
+HAVING COUNT(*) <= 10
+UNION
+-- ORDER BY a.category_id, a.price DESC
+SELECT a.* FROM products AS a
+  LEFT JOIN products AS a2 
+    ON a.category_id = a2.category_id AND a.price >= a2.price
+GROUP BY a.product_id
+HAVING COUNT(*) <= 10
+ORDER BY a.category_id, a.price DESC;
